@@ -1,0 +1,59 @@
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+# Path to zsh installation:
+export ZSH="/usr/share/oh-my-zsh"
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Plugins to load:
+plugins=(
+	common-aliases
+	dirhistory
+	django
+	docker
+	extract
+	git
+	git-extras
+	python
+	sudo
+	systemd
+	tmux
+	vscode
+	z
+	copyfile
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Set locale:
+export LANG=de_DE.UTF-8
+
+# Set default editor:
+export EDITOR=vim
+
+# Make zsh autocomplete dotfiles without typing the leading dot:
+setopt globdots
+
+# Load powerline:
+powerline-daemon -q
+. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# Use vscodium instead of vscode:
+alias code="codium"
+
+# Unlock all ssh keys:
+eval $(keychain --eval --quiet $(cd ~/.ssh; ls *_rsa))
