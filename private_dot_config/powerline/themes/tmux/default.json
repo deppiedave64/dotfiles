@@ -11,8 +11,13 @@
 				"priority": 80
 			},
 			{
+				"function": "powerline.segments.common.net.external_ip",
+				"name": "external_ip",
+				"priority": 90
+			},
+			{
 				"function": "powerline.segments.common.sys.system_load",
-				"priority": 50
+				"priority": 60
 			},
 			{
 				"function": "powerline.segments.common.time.date"
