@@ -2,7 +2,7 @@
 ZSH_TMUX_AUTOSTART="true"
 ZSH_TMUX_AUTOCONNECT="false"
 
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:/home/david/.gem/ruby/2.6.0/bin
 
 # Path to zsh installation:
 export ZSH="/usr/share/oh-my-zsh"
