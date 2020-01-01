@@ -44,6 +44,7 @@ plugins=(
 	copyfile
 	zsh-syntax-highlighting
 	zsh-autosuggestions
+	zsh-prompt-benchmark
 )
 
 source $ZSH/oh-my-zsh.sh
