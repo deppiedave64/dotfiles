@@ -55,6 +55,11 @@ export LANG=de_DE.UTF-8
 # Set default editor:
 export EDITOR=vim
 
+# Set llvm version for mesa-git package on arch
+# See https://aur.archlinux.org/packages/mesa-git/#pinned-699927
+# llvm-minimal-git needs to be installed
+export MESA_WHICH_LLVM=1
+
 # Make zsh autocomplete dotfiles without typing the leading dot:
 setopt globdots
 
@@ -63,7 +68,7 @@ powerline-daemon -q
 . /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Unlock all ssh keys:
-eval $(keychain --eval --quiet $(cd ~/.ssh; ls *_rsa))
+# eval $(keychain --eval --quiet $(cd ~/.ssh; ls *_rsa))
 
 # Enable marker support:
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
