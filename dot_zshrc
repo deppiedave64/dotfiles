@@ -1,81 +1,86 @@
-# Automatically start tmux:
+
+## Unlock all ssh keys:
+# eval $(keychain --eval --quiet $(cd ~/.ssh; ls *_rsa))
+
+###############
+# ZSH OPTIONS #
+###############
+
+setopt globdots # Autocomplete dotfiles without typing leading dot
+setopt extendedglob # Extended globbing. Allows using regular expressions with *
+setopt nocaseglob # Case insensitive globbing
+setopt nocheckjobs # Don't warn about running processes when exiting
+setopt numericglobsort # Sort filenames numerically when it makes sense
+setopt nobeep # No beep
+setopt appendhistory # Immediately append history instead of overwriting
+setopt histignorealldups # If a new command is a duplicate, remove the older one
+# setopt autocd # if only directory path is entered, cd there
+ENABLE_CORRECTION="true" # Autocorrection
+COMPLETION_WAITING_DOTS="true" # Display red dots whilst waiting for completion
+
+## Completion style
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                              # automatically find new executables in path
+HYPHEN_INSENSITIVE="true" # Hyphen-insensitive autocompletion
+
+## Speed up completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=500
+
+########
+# TMUX #
+########
+
 ZSH_TMUX_AUTOSTART="true"
 ZSH_TMUX_AUTOCONNECT="false"
 
+#########################
+# ENVIRONMENT VARIABLES #
+#########################
+
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH:/home/david/.gem/ruby/2.7.0/bin
-
-# Path to zsh installation:
 export ZSH="$HOME/.oh-my-zsh"
+export LANG=de_DE.UTF-8
+export EDITOR=vim
 
-# Theming:
-ZSH_THEME=powerlevel10k/powerlevel10k
+###########
+# PLUGINS #
+###########
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Plugins to load:
 plugins=(
-	common-aliases
-	dirhistory
-	django
-	docker
-	extract
-	git
-	git-extras
-	python
-	sudo
-	systemd
-	tmux
-	vscode
-	z
-	copyfile
-	zsh-syntax-highlighting
-#	zsh-autosuggestions
-#	zsh-prompt-benchmark
+        common-aliases
+        dirhistory
+        extract
+        git
+        git-extras
+        sudo
+        systemd
+        tmux
+        z
+        copyfile
+        zsh-syntax-highlighting
 )
+
+#############
+# OH-MY-ZSH #
+#############
 
 source $ZSH/oh-my-zsh.sh
 
-# Set locale:
-export LANG=de_DE.UTF-8
+########
+# MISC #
+########
 
-# Set default editor:
-export EDITOR=vim
-
-# Set llvm version for mesa-git package on arch
-# See https://aur.archlinux.org/packages/mesa-git/#pinned-699927
-# llvm-minimal-git needs to be installed
-export MESA_WHICH_LLVM=1
-
-# Make zsh autocomplete dotfiles without typing the leading dot:
-setopt globdots
-
-# Load powerline:
-powerline-daemon -q
-. /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
-
-# Unlock all ssh keys:
-# eval $(keychain --eval --quiet $(cd ~/.ssh; ls *_rsa))
-
-# Enable marker support:
+## Enable marker support:
 [[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
 
-# autosuggestions:
-# zmodload zsh/zpty
-# ZSH_AUTOSUGGEST_STRATEGY=(completion)
+## Powerlevel theme
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
