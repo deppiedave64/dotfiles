@@ -1,0 +1,46 @@
+" Source default config:
+
+runtime /etc/vim/vimrc /etc/vimrc $VIMRUNTIME/defaults.vim
+
+" Get the defaults that most users want:
+source $VIMRUNTIME/defaults.vim
+
+if &t_Co > 2 || has("gui_running")
+    " Switch on highlighting the last used search pattern.
+    set hlsearch
+endif
+
+" Put these in an autocmd group, so that we can delete them easily:
+augroup vimrcEx
+    " Delete all previously defined auto commands:
+    au!
+    " For all text files set 'textwidth' to 120 characters:
+    autocmd FileType text setlocal textwidth=120
+augroup END
+
+" Keep undo history for closed files in a local directory:
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0770)
+endif
+    if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+set undodir=~/.vim/undo-dir
+set undofile
+
+" Enable syntax highlighting:
+syntax on
+" Enable Filetype detection, plugins and indent files:
+filetype plugin indent on
+
+"""""""""""""""""""""""""""
+""" Additional packages """
+"""""""""""""""""""""""""""
+
+" The matchit plugin makes the % command work better, but it is not backwards
+" compatible.
+" The ! means the package won't be loaded right away but when plugins are
+" loaded during initialization.
+if has('syntax') && has('eval')
+  packadd! matchit
+endif
